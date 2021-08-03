@@ -27,6 +27,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  smooth_page_indicator: ^0.3.0-nullsafety.0
 
 dev_dependencies:
   flutter_test:
@@ -37,7 +38,7 @@ flutter_native_splash:
   # color: "#1DC4C4"
   color: "#ffffff"
   image: assets/waverr_greenBg.png
-  color_dark: "#1a1a1a"
+  # color_dark: "#1a1a1a"
   android: true
   ios: true
 # For information on the generic Dart part of this file, see the
