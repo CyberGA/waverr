@@ -10,11 +10,15 @@ class Screen1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // final textTheme = Theme.of(context).textTheme;
-    return Container(
-      color: Colors.white,
-      child: Center(
-        child: Text("Page "),
+    return Container(color: Colors.white, child: Center(
+      child: Column(
+        children: [
+          Image.asset(
+            "assets/group-hangout.png",
+            height: 10,
+          )
+        ],
       ),
-    );
+    ));
   }
 }

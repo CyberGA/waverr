@@ -31,6 +31,24 @@ class _OnBoardingState extends State<OnBoarding> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          shadowColor: Colors.transparent,
+          toolbarHeight: 100,
+          title: Center(
+            child: Column(
+              children: [
+              Image.asset(
+                "assets/waverr_greenBg.png",
+                height: 40,
+              ),
+              Text("Waverr",style: TextStyle(
+                fontSize: 30,
+                color: cPrimary
+              ),)
+            ],),
+          ),
+        ),
         body: Stack(
           children: [
             PageView(
@@ -71,7 +89,7 @@ class _OnBoardingState extends State<OnBoarding> {
                         child: Text("SKIP",
                             style: TextStyle(
                               fontSize: 25,
-                              fontWeight: FontWeight.w900,
+                              fontWeight: FontWeight.w300,
                               color: cPrimary,
                             )))
                              : Text("")
