@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -16,50 +18,70 @@ class OnBoarding extends StatefulWidget {
 }
 
 class _OnBoardingState extends State<OnBoarding> {
-
+  int _currentPage = 0;
   PageController _pageController = PageController();
-  
+
+  _onPageViewChanged(int index) {
+    setState(() {
+      _currentPage = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          PageView(
-            controller: _pageController,
-            children: [
-              Screen1(),
-              Screen2(),
-              Screen3(),
-            ],
-          ),
-
-          Row(
-           crossAxisAlignment: CrossAxisAlignment.center,
-           mainAxisAlignment: MainAxisAlignment.center,
-            children:  [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    height: 150,
-                    padding: const EdgeInsets.all(10),
-                    child: Center(
+    return SafeArea(
+      child: Scaffold(
+        body: Stack(
+          children: [
+            PageView(
+              controller: _pageController,
+              onPageChanged: _onPageViewChanged,
+              children: [
+                Screen1(),
+                Screen2(),
+                Screen3(),
+              ],
+            ),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 40),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.fromLTRB(10, 10, 10, 20),
                       child: SmoothPageIndicator(
                         controller: _pageController,
                         count: 3,
-                        effect: ExpandingDotsEffect(activeDotColor: cPrimary, dotColor: Colors.black12, dotHeight: 4),
-                        onDotClicked: (index) => _pageController.animateToPage(index, duration: Duration(milliseconds: 500), curve: Curves.bounceOut),
+                        effect: ExpandingDotsEffect(
+                            activeDotColor: cPrimary,
+                            dotColor: Colors.black12,
+                            dotHeight: 4),
+                        onDotClicked: (index) => _pageController.animateToPage(
+                            index,
+                            duration: Duration(milliseconds: 500),
+                            curve: Curves.bounceOut),
                       ),
                     ),
-                  )
-                ],
+                    
+                    (_currentPage != 2) ?
+                    TextButton(
+                        onPressed: () => {},
+                        child: Text("SKIP",
+                            style: TextStyle(
+                              fontSize: 25,
+                              fontWeight: FontWeight.w900,
+                              color: cPrimary,
+                            )))
+                             : Text("")
+                  ],
+                ),
               ),
-            ],
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }
 }
-
